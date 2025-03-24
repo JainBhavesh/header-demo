@@ -128,7 +128,7 @@ header {
 }
 
 header.fixed .header__inner {
-    width: 1.5rem !important;
+    width: 3.5rem !important;
     padding-left: 20px;
 }
 
