@@ -1,103 +1,78 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect } from 'react';
+import './header.css';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  useEffect(() => {
+    const header = document.getElementById("navbar");
+    const logo = document.querySelector(".header__inner");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+    // Add fixed class on scroll
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        header?.classList.add("fixed");
+      } else {
+        header?.classList.remove("fixed");
+      }
+    };
+
+    // Handle logo hover events
+    const handleLogoEnter = () => {
+      header?.classList.remove("fixed");
+    };
+
+    const handleLogoLeave = () => {
+      if (window.scrollY > 50) {
+        header?.classList.add("fixed");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    logo?.addEventListener("mouseenter", handleLogoEnter);
+    logo?.addEventListener("mouseleave", handleLogoLeave);
+
+    // Cleanup event listeners
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      logo?.removeEventListener("mouseenter", handleLogoEnter);
+      logo?.removeEventListener("mouseleave", handleLogoLeave);
+    };
+  }, []);
+
+  return (
+    <body style={{ background: "url(backbg.png) 0 0 no-repeat", backgroundSize: "cover" }}>
+      <header id="navbar">
+        <div className="header__inner">
+          <a className="header__home" href="#" aria-label="Return to the homepage">
+            <svg className="header__logo" width="219" height="34" viewBox="0 0 219 34" xmlns="http://www.w3.org/2000/svg">
+              <path d="m169.47 13.61 9.5 6.79c-.81 3.87-2.97 7.27-5.99 9.71-.38.3-.77.59-1.17.87-2.82 1.91-6.24 3.03-9.92 3.03h-.17c-9.53-.09-17.25-7.62-17.25-16.99s7.82-17.02 17.43-17.02c4.72 0 9 1.83 12.15 4.81l-6.11 6.12c-.2-.18-.4-.35-.61-.5-1.49-1.12-3.38-1.78-5.42-1.78-4.54 0-8.29 3.29-8.74 7.49-.03.28-.04.57-.04.85 0 4.54 3.84 8.24 8.61 8.33.06 0 .11.01.17.01 3.58 0 6.65-2.03 8.02-4.94h-6.46v-6.79h6.02zm-157.23-13.09-12.24 32.92h9.94l7.59-20.41 7.67 20.41h9.94l-12.39-32.92zm48.87 14.32-8.42-14.32h-9.94v32.92h9.51v-17.49l8.85 15.05 8.85-15.05v17.49h9.51v-32.92h-9.94l-8.42 14.31zm74.69-14.3h-9.51s0 32.91 0 32.91h9.51v-23.38h.02l-.02-.02zm83.2 8.65v15.59l-9.51 8.66h-14.19l-9.46-8.66v-15.59l9.46-8.63v-.03h14.19zm-9.51-.01h-14.15v15.59h14.15zm-92.47-8.66h-28.35v8.66h16.69l-16.69 15.59v8.66h28.36v-8.66h-16.69l16.7-15.59v-8.66z" fill="currentColor" />
+            </svg>
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
+          <nav className="header__nav">
+            <ul className="nav-links">
+              <li><a href="#">Review Centre</a></li>
+              <li><a href="#">All Features</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Why Join</a></li>
+              <li><a href="#">Articles</a></li>
+            </ul>
+            <div className="buttons">
+              <a href="#" className="btn btn-light">Start Free Trial →</a>
+              <a href="#" className="btn btn-dark">Login →</a>
+            </div>
+          </nav>
         </div>
+      </header>
+
+      <main>
+        <section className="content">
+          <h1>Scroll Down to See the Fixed Header</h1>
+          <p>Keep scrolling to check how the navigation bar sticks to the top.</p>
+          <div className="filler"></div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </body>
   );
 }

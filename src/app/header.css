@@ -1,0 +1,144 @@
+/* Reset & Base Styles */
+body,
+ul {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+header {
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    width: 100vw;
+    top: 3rem;
+    z-index: 98;
+}
+
+/* Logo */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #7e57c2;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+    gap: 2.5rem;
+}
+
+.header__nav .buttons {
+    display: flex;
+    gap: 0.75rem;
+    white-space: nowrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #7e57c2;
+}
+
+/* Buttons */
+.buttons .btn {
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-light {
+    background: #ede7f6;
+    color: #7e57c2;
+}
+
+.btn-light:hover {
+    background: #d1c4e9;
+}
+
+.btn-dark {
+    background: #7e57c2;
+    color: white;
+}
+
+.btn-dark:hover {
+    background: #5e35b1;
+}
+
+/* Spacing for scroll effect */
+.content {
+    padding: 100px 40px;
+    text-align: center;
+}
+
+.filler {
+    height: 1500px;
+    background: linear-gradient(to bottom, #ede7f6, white);
+}
+
+.header__inner {
+    border-radius: 0.375rem;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: rgb(255 255 255 / 70%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1), height 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    width: 55rem;
+}
+
+.header__home {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 8rem;
+    height: 1.5rem;
+    min-width: 8rem;
+    min-height: 1.5rem;
+    margin: 0 2.5rem 0 0;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1), min-width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header__logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #BBAFFE;
+    width: 8rem;
+    height: auto;
+}
+
+header.fixed .header__inner {
+    width: 1.5rem !important;
+    padding-left: 20px;
+}
+
+header.fixed .header__inner .header__home {
+    min-width: 1.2rem;
+    width: 1.2rem !important;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.875rem;
+}
